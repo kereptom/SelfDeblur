@@ -124,6 +124,9 @@ for f in files_source:
         optimizer.zero_grad()
 
         # get the network output
+        if isinstance(net, nn.Upsample):
+            net.recompute_scale_factor = False
+
         out_x = net(net_input)
         out_k = net_kernel(net_input_kernel)
     
